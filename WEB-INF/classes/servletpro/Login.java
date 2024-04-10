@@ -5,6 +5,7 @@ import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.util.*;
 
 public class Login extends HttpServlet{
     public void service(HttpServletRequest request,
@@ -36,13 +37,14 @@ Connection connection=null;
        ResultSet resultSet = statement.executeQuery(sql);
        boolean test = false;   
        while( resultSet.next()){
+        Random r  = new Random();
                 out.print("login select data");
                 test =true;
                 PreparedStatement stmt;
              String query="update userdata1 set status= ? ,otp =? where email =?  ";
 			stmt=connection.prepareStatement(query);
 			stmt.setString(1,"yes");
-			stmt.setString(2,"9876");
+			stmt.setInt(2,r.nextInt(1000));
 			stmt.setString(3,email);
 			
 			
