@@ -3,6 +3,17 @@
 <web-app>
 
 <servlet>
+      <servlet-name>otp</servlet-name>
+      <servlet-class>servletpro.Otp</servlet-class>
+    </servlet>
+   
+   
+   
+    <servlet-mapping>
+        <servlet-name>otp</servlet-name>
+        <url-pattern>/otp</url-pattern>
+    </servlet-mapping>
+<servlet>
       <servlet-name>log</servlet-name>
       <servlet-class>servletpro.Login</servlet-class>
     </servlet>

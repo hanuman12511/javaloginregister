@@ -27,21 +27,31 @@ Connection connection=null;
 		{
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/java","root","");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:1118/java","root","");
 			
             Statement statement=null;
             statement=connection.createStatement();
-            String sql ="select * from userdata where email='"+email+"' && password='"+password+"'";
+            String sql ="select * from userdata1 where email='"+email+"' && password='"+password+"'";
             out.print(sql);
        ResultSet resultSet = statement.executeQuery(sql);
        boolean test = false;   
        while( resultSet.next()){
                 out.print("login select data");
                 test =true;
+                PreparedStatement stmt;
+             String query="update userdata1 set status= ? ,otp =? where email =?  ";
+			stmt=connection.prepareStatement(query);
+			stmt.setString(1,"yes");
+			stmt.setString(2,"9876");
+			stmt.setString(3,email);
+			
+			
+			
+			int row=stmt.executeUpdate(); 
               
             }
             if(test){
-                response.sendRedirect(request.getContextPath() + "/HomePage.jsp");
+                response.sendRedirect(request.getContextPath() + "/OtpPage.jsp");
             }
             else{
                 response.sendRedirect(request.getContextPath() + "/index.jsp");

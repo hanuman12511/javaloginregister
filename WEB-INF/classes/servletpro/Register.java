@@ -31,9 +31,9 @@ Connection connection=null;
 		{
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/java","root","");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:1118/java","root","");
 			PreparedStatement stmt;
-			String query="insert into  userdata(username,email,password) values(?,?,?)";
+			String query="insert into  userdata1(username,email,password) values(?,?,?)";
 			stmt=connection.prepareStatement(query);
 			stmt.setString(1,name);
 			stmt.setString(2,email);
@@ -57,7 +57,7 @@ Connection connection=null;
 		}
 		catch (Exception e)
 		{
-			System.out.println("exc"+e);
+			out.println("exc"+e);
 		}
 
 
